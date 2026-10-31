@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StreamVerse — ストリームバース</title>
+<meta name="description" content="A curated list of legal streaming sites for movies, anime, manga and live TV.">
+<meta name="theme-color" content="#0b0b0f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23E50914'/><path d='M22 14h8l12 36h-8z' fill='white'/><circle cx='46' cy='18' r='5' fill='%23ff7ad9'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="petals" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#">
+    <span class="brand-mark">S</span>
+    <span class="brand-text">STREAM<span>VERSE</span></span>
+  </a>
+  <nav class="nav-links" id="navLinks"></nav>
+  <div class="nav-actions">
+    <button class="search-btn" id="openSearch" aria-label="Search">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.39-1.42 1.42-5.39-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+      <span>Search</span><kbd>⌘K</kbd>
+    </button>
+    <button class="edit-btn" id="toggleEdit" aria-pressed="false">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      <span>Manage</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="speedlines"></div>
+    <div class="hero-kanji">配信</div>
+  </div>
+  <div class="hero-inner">
+    <p class="eyebrow"><span class="dot"></span> ストリームバース · Curated &amp; legal</p>
+    <h1>Your next binge,<br><em>one tap away.</em></h1>
+    <p class="lede">Movies, anime, manga and live TV from sources that actually hold the rights. Search instantly, watch in the built-in player, and build your own list.</p>
+    <div class="hero-cta">
+      <button class="btn btn-red" id="heroSearch">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8 5v14l11-7z"/></svg> Find something
+      </button>
+      <button class="btn btn-ghost" id="heroAdd">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M11 5h2v14h-2zM5 11h14v2H5z"/></svg> Add a site
+      </button>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<div class="edit-banner" id="editBanner" hidden>
+  <div>
+    <strong>Manage mode</strong> — add sites, star them as trusted, or delete them.
+    <span class="pending" id="pendingNote" hidden>Unpublished changes saved in this browser.</span>
+  </div>
+  <div class="edit-banner-actions">
+    <button class="btn-sm" id="bannerAdd">+ Add site</button>
+    <button class="btn-sm" id="openSettings">GitHub sync</button>
+    <button class="btn-sm btn-sm-red" id="publishBtn">Publish to site</button>
+    <button class="btn-sm btn-sm-ghost" id="resetBtn">Discard local</button>
+  </div>
+</div>
+
+<main id="rows"></main>
+
+<footer class="foot">
+  <div class="foot-brand">STREAM<span>VERSE</span> <small>ストリームバース</small></div>
+  <p>Only lists services that license their content. Every link opens the official site.</p>
+</footer>
+
+<!-- Search overlay -->
+<div class="overlay" id="searchOverlay" hidden>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search sites">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.39-1.42 1.42-5.39-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+      <input id="searchInput" type="text" placeholder="Search sites… (try “crunchy” or “manga”)" autocomplete="off">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="results" id="results"></ul>
+  </div>
+</div>
+
+<!-- Player overlay -->
+<div class="overlay" id="playerOverlay" hidden>
+  <div class="player" role="dialog" aria-modal="true" aria-label="Embedded player">
+    <div class="player-bar">
+      <div class="player-title"><img id="playerIcon" alt=""><span id="playerName"></span><span class="player-host" id="playerHost"></span></div>
+      <div class="player-actions">
+        <a class="btn-sm" id="playerOpen" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <button class="icon-btn" id="playerClose" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="player-frame">
+      <iframe id="playerFrame" title="Embedded site" referrerpolicy="no-referrer" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <div class="player-hint" id="playerHint">
+        <p>Blank screen? Many streaming services (Netflix, Disney+, etc.) block being shown inside other sites.</p>
+        <a class="btn btn-red" id="playerHintOpen" target="_blank" rel="noopener">Open it directly ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add / edit site -->
+<div class="overlay" id="addOverlay" hidden>
+  <form class="modal" id="addForm" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <div class="modal-head">
+      <h2 id="addTitle">Add a site</h2>
+      <button type="button" class="icon-btn" data-close="addOverlay" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body two-col">
+      <div class="form-col">
+        <label>Link
+          <input name="url" type="url" placeholder="https://www.example.com/" required>
+        </label>
+        <label>Name
+          <input name="name" type="text" placeholder="Auto-filled from the link" maxlength="40">
+        </label>
+        <label>Category
+          <select name="cat" id="catSelect"></select>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="trusted"> <span>Mark as trusted</span>
+        </label>
+        <p class="fine">Saved in this browser right away. Use <b>Publish to site</b> to make it live for everyone.</p>
+      </div>
+      <div class="preview-col">
+        <div class="preview-head">Live preview</div>
+        <div class="preview-box">
+          <iframe id="previewFrame" title="Preview" referrerpolicy="no-referrer"></iframe>
+          <div class="preview-empty" id="previewEmpty">Paste a link to preview it here.</div>
+        </div>
+        <p class="fine">If the preview stays blank the site blocks embedding — it'll still open in a new tab.</p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" data-close="addOverlay">Cancel</button>
+      <button type="submit" class="btn btn-red">Add site</button>
+    </div>
+  </form>
+</div>
+
+<!-- GitHub settings -->
+<div class="overlay" id="settingsOverlay" hidden>
+  <form class="modal" id="settingsForm" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <div class="modal-head">
+      <h2 id="setTitle">GitHub sync</h2>
+      <button type="button" class="icon-btn" data-close="settingsOverlay" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="fine">Publishing writes <code>links.json</code> to your repo, and GitHub Pages updates the live site within a minute. The token is stored only in this browser.</p>
+      <label>Repository (owner/repo)
+        <input name="repo" type="text" placeholder="yourname/streamverse" required>
+      </label>
+      <label>Branch
+        <input name="branch" type="text" value="main" required>
+      </label>
+      <label>Fine-grained access token
+        <input name="token" type="password" placeholder="github_pat_…" autocomplete="off">
+      </label>
+      <p class="fine">Create one at GitHub → Settings → Developer settings → Fine-grained tokens, limited to this one repo with <b>Contents: Read and write</b>.</p>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" id="forgetToken">Forget token</button>
+      <button type="submit" class="btn btn-red">Save</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

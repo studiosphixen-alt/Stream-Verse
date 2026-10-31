@@ -1,0 +1,54 @@
+{
+  "categories": [
+    { "id": "movies", "name": "Movies & Shows", "jp": "映画", "desc": "Free, legal movies and TV — ad-supported or library-backed." },
+    { "id": "anime", "name": "Anime", "jp": "アニメ", "desc": "Licensed anime, including official free YouTube channels." },
+    { "id": "manga", "name": "Manga", "jp": "漫画", "desc": "Official manga and webtoon readers — many chapters free." },
+    { "id": "livetv", "name": "Live TV & Sports", "jp": "ライブ", "desc": "Free live channels and official sports streams." },
+    { "id": "paid", "name": "Paid", "jp": "有料", "desc": "Subscription services worth the money." }
+  ],
+  "sites": [
+    { "id": "tubi", "name": "Tubi", "url": "https://tubitv.com/", "cat": "movies", "trusted": true },
+    { "id": "pluto", "name": "Pluto TV", "url": "https://pluto.tv/", "cat": "movies", "trusted": true },
+    { "id": "plex", "name": "Plex", "url": "https://watch.plex.tv/", "cat": "movies", "trusted": true },
+    { "id": "roku", "name": "The Roku Channel", "url": "https://therokuchannel.roku.com/", "cat": "movies", "trusted": false },
+    { "id": "ytmovies", "name": "YouTube Movies", "url": "https://www.youtube.com/feed/storefront", "cat": "movies", "trusted": false },
+    { "id": "kanopy", "name": "Kanopy", "url": "https://www.kanopy.com/", "cat": "movies", "trusted": false },
+    { "id": "hoopla", "name": "Hoopla", "url": "https://www.hoopladigital.com/", "cat": "movies", "trusted": false },
+
+    { "id": "crunchyroll", "name": "Crunchyroll", "url": "https://www.crunchyroll.com/", "cat": "anime", "trusted": true },
+    { "id": "museasia", "name": "Muse Asia", "url": "https://www.youtube.com/@MuseAsia", "cat": "anime", "trusted": true },
+    { "id": "anione", "name": "Ani-One Asia", "url": "https://www.youtube.com/@AniOneAsia", "cat": "anime", "trusted": true },
+    { "id": "hidive", "name": "HIDIVE", "url": "https://www.hidive.com/", "cat": "anime", "trusted": false },
+    { "id": "retrocrush", "name": "RetroCrush", "url": "https://www.retrocrush.tv/", "cat": "anime", "trusted": false },
+    { "id": "tubianime", "name": "Tubi Anime", "url": "https://tubitv.com/category/anime", "cat": "anime", "trusted": false },
+
+    { "id": "mangaplus", "name": "MANGA Plus", "url": "https://mangaplus.shueisha.co.jp/", "cat": "manga", "trusted": true },
+    { "id": "webtoon", "name": "Webtoon", "url": "https://www.webtoons.com/", "cat": "manga", "trusted": true },
+    { "id": "kmanga", "name": "K MANGA", "url": "https://kmanga.kodansha.com/", "cat": "manga", "trusted": false },
+    { "id": "shonenjump", "name": "Shonen Jump", "url": "https://www.viz.com/shonenjump", "cat": "manga", "trusted": false },
+    { "id": "tapas", "name": "Tapas", "url": "https://tapas.io/", "cat": "manga", "trusted": false },
+    { "id": "azuki", "name": "Azuki", "url": "https://www.azuki.co/", "cat": "manga", "trusted": false },
+    { "id": "comikey", "name": "Comikey", "url": "https://comikey.com/", "cat": "manga", "trusted": false },
+
+    { "id": "plutolive", "name": "Pluto TV Live", "url": "https://pluto.tv/live-tv", "cat": "livetv", "trusted": true },
+    { "id": "samsungtv", "name": "Samsung TV Plus", "url": "https://www.samsungtvplus.com/", "cat": "livetv", "trusted": false },
+    { "id": "plexlive", "name": "Plex Live TV", "url": "https://watch.plex.tv/live-tv", "cat": "livetv", "trusted": false },
+    { "id": "tamasha", "name": "Tamasha", "url": "https://tamashaweb.com/", "cat": "livetv", "trusted": true },
+    { "id": "tapmad", "name": "Tapmad", "url": "https://www.tapmad.com/", "cat": "livetv", "trusted": false },
+    { "id": "aryzap", "name": "ARY ZAP", "url": "https://www.aryzap.com/", "cat": "livetv", "trusted": false },
+
+    { "id": "netflix", "name": "Netflix", "url": "https://www.netflix.com/", "cat": "paid", "trusted": true },
+    { "id": "crunchyrollp", "name": "Crunchyroll Premium", "url": "https://www.crunchyroll.com/premium", "cat": "paid", "trusted": true },
+    { "id": "disney", "name": "Disney+", "url": "https://www.disneyplus.com/", "cat": "paid", "trusted": false },
+    { "id": "max", "name": "Max", "url": "https://www.hbomax.com/", "cat": "paid", "trusted": false },
+    { "id": "prime", "name": "Prime Video", "url": "https://www.primevideo.com/", "cat": "paid", "trusted": false },
+    { "id": "appletv", "name": "Apple TV+", "url": "https://tv.apple.com/", "cat": "paid", "trusted": false },
+    { "id": "hulu", "name": "Hulu", "url": "https://www.hulu.com/", "cat": "paid", "trusted": false },
+    { "id": "paramount", "name": "Paramount+", "url": "https://www.paramountplus.com/", "cat": "paid", "trusted": false },
+    { "id": "peacock", "name": "Peacock", "url": "https://www.peacocktv.com/", "cat": "paid", "trusted": false },
+    { "id": "viki", "name": "Viki", "url": "https://www.viki.com/", "cat": "paid", "trusted": false },
+    { "id": "shudder", "name": "Shudder", "url": "https://www.shudder.com/", "cat": "paid", "trusted": false },
+    { "id": "mgm", "name": "MGM+", "url": "https://www.mgmplus.com/", "cat": "paid", "trusted": false },
+    { "id": "amc", "name": "AMC+", "url": "https://www.amcplus.com/", "cat": "paid", "trusted": false }
+  ]
+}
